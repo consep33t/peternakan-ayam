@@ -27,7 +27,7 @@ export const getManualControl = async () => {
 };
 
 export const setManualControl = async (data) => {
-  const res = await api.post("/control", data);
+  const res = await api.post("/relay/control", data);
   return res.data;
 };
 
