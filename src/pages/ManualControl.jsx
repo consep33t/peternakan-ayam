@@ -9,7 +9,7 @@ const ManualControl = () => {
   // Ambil status dari /api/relay
   const fetchRelayStatus = async () => {
     try {
-      const res = await fetch("http://145.79.10.235:5000/api/relay");
+      const res = await fetch("http://31.97.189.33:5000/api/relay");
       const data = await res.json();
       setRelayFeed(data.feed === "on");
       setRelayWater(data.water === "on");
