@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://145.79.10.235:5000/api",
+  baseURL: "http://31.97.189.33/:5000/api",
 });
 
 export const fetchLatestData = async () => {
