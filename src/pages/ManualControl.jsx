@@ -28,7 +28,7 @@ const ManualControl = () => {
     setSubmitting((prev) => ({ ...prev, [type]: true }));
 
     try {
-      await fetch("http://145.79.10.235:5000/api/relay/control", {
+      await fetch("http://31.97.189.33:5000/api/relay/control", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
