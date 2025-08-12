@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SiRelay } from "react-icons/si";
 
-const ManualControl = () => {
+const CardRelay = () => {
   const [relayFeed, setRelayFeed] = useState(false);
   const [relayWater, setRelayWater] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -53,15 +53,9 @@ const ManualControl = () => {
   }, []);
 
   if (loading) return <div className="p-6">Memuat data...</div>;
-
   return (
-    <div className="p-6 space-y-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">
-        Kontrol Manual Relay Pakan & Air
-      </h2>
-
-      {/* Card Relay Pakan */}
-      <div className="card bg-white shadow-lg border border-base-300 p-6 max-w-md mx-auto">
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="card bg-white shadow-lg border border-base-300 p-6">
         <h3 className="text-xl font-semibold mb-4 text-center">Relay Pakan</h3>
         <SiRelay className="mx-auto mb-4 text-6xl text-yellow-500" />
         <div className="flex items-center justify-center gap-4">
@@ -83,7 +77,7 @@ const ManualControl = () => {
       </div>
 
       {/* Card Relay Air */}
-      <div className="card bg-white shadow-lg border border-base-300 p-6 max-w-md mx-auto">
+      <div className="card bg-white shadow-lg border border-base-300 p-6">
         <h3 className="text-xl font-semibold mb-4 text-center">Relay Air</h3>
         <SiRelay className="mx-auto mb-4 text-6xl text-blue-500" />
         <div className="flex items-center justify-center gap-4">
@@ -107,4 +101,4 @@ const ManualControl = () => {
   );
 };
 
-export default ManualControl;
+export default CardRelay;

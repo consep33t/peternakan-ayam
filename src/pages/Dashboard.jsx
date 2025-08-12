@@ -1,8 +1,8 @@
 // src/pages/Dashboard.jsx
 import { useEffect, useState } from "react";
-import FeedStatus from "../components/FeedStatus";
-import WaterStatus from "../components/WaterStatus";
-import IRStatus from "../components/IRStatus";
+import CardProgress from "../components/CardProgres";
+import CardIrStatus from "../components/CardIrStatus";
+import CardRelay from "../components/CardRelay";
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
@@ -27,14 +27,29 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen p-6 bg-gray-100 text-gray-800">
-      <h1 className="text-2xl font-bold mb-4">
-        Dashboard Monitoring Pakan & Air
+      <h1 className="text-2xl font-bold mb-4 text-center md:text-3xl">
+        Sistem Peternakan Ayam Pintar
       </h1>
-
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        <FeedStatus level={data.distance_feed} />
-        <WaterStatus level={data.distance_water} />
-        <IRStatus ir1={data.ir1} ir2={data.ir2} ir3={data.ir3} />
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <CardProgress
+          title="Pakan Ayam"
+          percentage_feed={data.distance_feed}
+          type="feed"
+        />
+        <CardProgress
+          title="Air Minum Ayam"
+          percentage_water={data.distance_water}
+          type="water"
+        />
+      </div>
+      <div className="mt-6">
+        <CardIrStatus ir1={data.ir1} ir2={data.ir2} ir3={data.ir3} />
+      </div>
+      <h1 className="text-3xl font-bold my-6 text-center">
+        Kontrol Manual Relay Pakan & Air
+      </h1>
+      <div>
+        <CardRelay />
       </div>
     </div>
   );
