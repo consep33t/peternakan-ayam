@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchSystemMode, setSystemMode } from "../services/api";
 
 const ModeSwitch = () => {
-  const [mode, setMode] = useState("auto");
+  const [mode, setMode] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const loadMode = async () => {
@@ -35,13 +35,13 @@ const ModeSwitch = () => {
   }, []);
 
   return (
-    <div className="w-fit">
+    <div className="w-full bg-white p-4 rounded border border-black shadow-xl flex flex-col justify-between">
       <h2 className="text-2xl font-bold mb-4">Mode Sistem</h2>
       <button
         onClick={toggleMode}
         disabled={loading}
-        className={`px-4 py-2 rounded text-white ${
-          mode === "auto" ? "bg-green-600" : "bg-blue-600"
+        className={`rounded btn w-full ${
+          mode === "auto" ? "btn-accent" : "btn-info"
         }`}
       >
         {loading

@@ -42,21 +42,21 @@ export default function RTCSetter() {
   };
 
   return (
-    <div className="max-w-md p-4 mx-auto bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Set RTC Time</h2>
+    <div className="w-full p-4 bg-white rounded border border-black shadow-xl">
+      <h2 className="text-xl font-bold mb-4">Atur Waktu RTC</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="datetime-local"
           value={datetime}
           onChange={(e) => setDatetime(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="input w-full bg-slate-300"
         />
         <button
           type="submit"
-          className="w-full p-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+          className="w-full btn btn-info px-4 py-2 rounded"
           disabled={loading}
         >
-          {loading ? "Sending..." : "Send to ESP32"}
+          {loading ? "Mengirimkan ..." : "Kirim ke ESP32"}
         </button>
       </form>
 
