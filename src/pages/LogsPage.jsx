@@ -71,7 +71,7 @@ const LogsPage = () => {
       {/* Filter Section */}
       <div className="flex gap-3 mb-4 flex-wrap bg-white items-center p-4 rounded border border-black shadow-xl justify-center md:justify-normal">
         {tab === "feed" && (
-          <div className="flex justify-center md:justify-start md:flex-row flex-col items-center">
+          <div className="flex justify-center md:justify-start gap-3 md:flex-row flex-col items-center">
             <h3 className="text-lg font-semibold mb-2">
               Tambah Data Isi Pakan
             </h3>

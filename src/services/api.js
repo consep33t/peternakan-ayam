@@ -1,9 +1,31 @@
-//services/api.js
 import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://31.97.189.33:5000/api",
+  withCredentials: true,
 });
+
+// ============ AUTH ============
+
+// Login
+export const loginUser = async (email, password) => {
+  const res = await api.post("/auth/login", { email, password });
+  return res.data;
+};
+
+// Logout
+export const logoutUser = async () => {
+  const res = await api.post("/auth/logout");
+  return res.data;
+};
+
+// Get Session
+export const getSession = async () => {
+  const res = await api.get("/auth/session");
+  return res.data;
+};
+
+// ============ SENSOR & DATA ============
 
 export const fetchLatestData = async () => {
   const response = await api.get("/sensor");
@@ -52,7 +74,7 @@ export const enableSchedule = async (id, updates) => {
 };
 
 export const deleteSchedule = async (id, deleteData) => {
-  const res = await api.delete(`/schedules/${id}`, deleteData);
+  const res = await api.delete(`/schedules/${id}`, { data: deleteData });
   return res.data;
 };
 

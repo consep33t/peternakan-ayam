@@ -26,7 +26,7 @@ const Dashboard = () => {
   if (!data) return <div className="p-6">Loading...</div>;
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 text-gray-800">
+    <div className="min-h-screen p-6 text-gray-800">
       <h1 className="text-2xl font-bold mb-4 text-center md:text-3xl">
         Sistem Peternakan Ayam Pintar
       </h1>

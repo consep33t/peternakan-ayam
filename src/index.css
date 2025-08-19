@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @plugin "daisyui";
+
+body {
+  @apply bg-gradient-to-br from-green-100 via-green-200 to-green-300;
+}
