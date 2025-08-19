@@ -46,91 +46,113 @@ const LogsPage = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Log Riwayat</h2>
-
-      {/* Tabs */}
-      <div className="mb-4 flex gap-4">
-        {["feed", "weight"].map((t) => (
-          <button
-            key={t}
-            className={`px-4 py-2 rounded ${
-              tab === t ? "bg-blue-600 text-white" : "bg-gray-200"
-            }`}
-            onClick={() => {
-              setTab(t);
-              setFilter("all");
-              setRange({ start: "", end: "" });
-            }}
-          >
-            {t === "feed" ? "Isi Ulang Pakan" : "Berat Ayam"}
-          </button>
-        ))}
-      </div>
-      {tab === "feed" && (
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Tambah Data Isi Pakan</h3>
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-              if (!amountKg) return;
-              await postFeedRefill(parseFloat(amountKg));
-              setAmountKg("");
-              loadLogs("all");
-            }}
-            className="flex gap-4 items-center flex-wrap"
-          >
-            <input
-              type="number"
-              placeholder="Jumlah (kg)"
-              step="0.01"
-              value={amountKg}
-              onChange={(e) => setAmountKg(e.target.value)}
-              className="p-2 border rounded"
-            />
-            <button className="bg-green-600 text-white px-4 py-2 rounded">
-              Simpan
+      <div className="bg-white p-6 rounded mb-6 border border-black shadow-xl">
+        <h2 className="text-2xl font-bold mb-4">Log Riwayat</h2>
+        {/* Tabs */}
+        <div className="mb-4 flex gap-4">
+          {["feed", "weight"].map((t) => (
+            <button
+              key={t}
+              className={`btn btn-warning ${
+                tab === t ? "text-black" : "btn-outline"
+              }`}
+              onClick={() => {
+                setTab(t);
+                setFilter("all");
+                setRange({ start: "", end: "" });
+              }}
+            >
+              {t === "feed" ? "Isi Ulang Pakan" : "Berat Ayam"}
             </button>
-          </form>
+          ))}
         </div>
-      )}
+      </div>
 
-      {/* Filter Buttons */}
-      <div className="flex gap-3 mb-4 flex-wrap">
-        <button onClick={() => loadLogs("all")} className="">
-          Semua
-        </button>
-        <button onClick={() => loadLogs("weekly")} className="btn">
-          Mingguan
-        </button>
-        <button onClick={() => loadLogs("monthly")} className="btn">
-          Bulanan
-        </button>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            loadLogs("range");
-          }}
-          className="flex gap-2 items-center"
-        >
-          <input
-            type="date"
-            value={range.start}
-            onChange={(e) => setRange({ ...range, start: e.target.value })}
-            className="border p-1 rounded w-7 md:w-auto"
-          />
-          <input
-            type="date"
-            value={range.end}
-            onChange={(e) => setRange({ ...range, end: e.target.value })}
-            className="border p-1 rounded w-7 md:w-auto"
-          />
-          <button
-            type="submit"
-            className="btn bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Tampilkan
-          </button>
-        </form>
+      {/* Filter Section */}
+      <div className="flex gap-3 mb-4 flex-wrap bg-white items-center p-4 rounded border border-black shadow-xl justify-center md:justify-normal">
+        {tab === "feed" && (
+          <div className="flex justify-center md:justify-start md:flex-row flex-col items-center">
+            <h3 className="text-lg font-semibold mb-2">
+              Tambah Data Isi Pakan
+            </h3>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                if (!amountKg) return;
+                await postFeedRefill(parseFloat(amountKg));
+                setAmountKg("");
+                loadLogs("all");
+              }}
+              className="flex gap-2 md:gap-4 items-center"
+            >
+              <input
+                type="number"
+                placeholder="Jumlah (kg)"
+                step="0.01"
+                value={amountKg}
+                onChange={(e) => setAmountKg(e.target.value)}
+                className="p-2 border rounded md:w-auto w-full bg-slate-300"
+              />
+              <button className="btn btn-success">Simpan</button>
+            </form>
+          </div>
+        )}
+        <div className="w-full">
+          <h2 className="mb-3 text-md font-semibold">
+            Filter Berdasarkan Kategori
+          </h2>
+          <div className="md:flex-row flex flex-col w-full">
+            <select
+              value={filter}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val !== "range") {
+                  loadLogs(val);
+                }
+                setFilter(val);
+              }}
+              className="border rounded px-3 py-2 bg-slate-300 w-full md:w-auto"
+            >
+              <option value="all">Semua</option>
+              <option value="weekly">Mingguan</option>
+              <option value="monthly">Bulanan</option>
+              <option value="range">Rentang Tanggal</option>
+            </select>
+            {filter === "range" && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  loadLogs("range");
+                }}
+                className="flex flex-col md:flex-row ml-0 md:ml-3 mt-3 md:mt-0 gap-2 w-full"
+              >
+                <div className="flex flex-col md:flex-row w-full gap-2">
+                  <input
+                    type="date"
+                    value={range.start}
+                    onChange={(e) =>
+                      setRange({ ...range, start: e.target.value })
+                    }
+                    className="border p-1 rounded bg-slate-300 w-full md:w-auto"
+                  />
+                  <span className="hidden md:inline-block">-</span>
+                  <span className="md:hidden text-center">s/d</span>
+                  <input
+                    type="date"
+                    value={range.end}
+                    onChange={(e) =>
+                      setRange({ ...range, end: e.target.value })
+                    }
+                    className="border p-1 rounded bg-slate-300 w-full md:w-auto"
+                  />
+                </div>
+                <button type="submit" className="btn btn-info w-full md:w-auto">
+                  Tampilkan
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Logs Display */}
@@ -141,7 +163,7 @@ const LogsPage = () => {
           tab={tab}
         />
       ) : (
-        <table className="min-w-full bg-white border mb-8">
+        <table className="min-w-full bg-white rp border mb-8 shadow-xl">
           <thead>
             <tr className="bg-gray-100">
               <th className="text-left px-4 py-2">Waktu</th>
@@ -175,8 +197,6 @@ const LogsPage = () => {
           </tbody>
         </table>
       )}
-
-      {/* Form Tambah Feed Refill */}
     </div>
   );
 };
