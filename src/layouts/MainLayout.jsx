@@ -6,13 +6,13 @@ import {
 } from "react-icons/ai";
 
 const navItems = [
-  { name: "Home", path: "/", icon: <AiOutlineHome size={24} /> },
+  { name: "Beranda", path: "/", icon: <AiOutlineHome size={24} /> },
   {
-    name: "Schedule",
+    name: "Jadwal",
     path: "/schedule",
     icon: <AiOutlineSchedule size={24} />,
   },
-  { name: "Logs", path: "/logs", icon: <AiOutlineFileText size={24} /> },
+  { name: "Riwayat", path: "/logs", icon: <AiOutlineFileText size={24} /> },
 ];
 
 export default function MainLayout() {
