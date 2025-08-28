@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://31.97.189.33:5000/api",
+  baseURL: "https://api.peternakan-ayam.site/api",
   withCredentials: true,
 });
 

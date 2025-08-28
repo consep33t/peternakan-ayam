@@ -10,7 +10,7 @@ const CardRelay = () => {
   // Ambil status dari /api/relay
   const fetchRelayStatus = async () => {
     try {
-      const res = await fetch("http://31.97.189.33:5000/api/relay");
+      const res = await fetch("https://api.peternakan-ayam.site/api/relay");
       const data = await res.json();
       setRelayFeed(data.feed === "on");
       setRelayWater(data.water === "on");
@@ -29,7 +29,7 @@ const CardRelay = () => {
     setSubmitting((prev) => ({ ...prev, [type]: true }));
 
     try {
-      await fetch("http://31.97.189.33:5000/api/relay/control", {
+      await fetch("https://api.peternakan-ayam.site/relay/control", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

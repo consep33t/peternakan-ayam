@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   const getData = async () => {
     try {
-      const res = await fetch("http://31.97.189.33:5000/api/sensor");
+      const res = await fetch("https://api.peternakan-ayam.site/api/sensor");
       const result = await res.json();
       setData(result);
     } catch (err) {
