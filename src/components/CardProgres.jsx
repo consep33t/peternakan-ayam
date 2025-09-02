@@ -14,8 +14,8 @@ const CardProgres = ({
     );
 
   // Konfigurasi jarak untuk tiap tipe
-  const fullDistance = type === "feed" ? 10 : 25;
-  const emptyDistance = 40;
+  const fullDistance = type === "feed" ? 16 : 25;
+  const emptyDistance = type === "feed" ? 32 : 45;
 
   // Pilih nilai sensor yang sesuai tipe
   const sensorValue = type === "feed" ? percentage_feed : percentage_water;
