@@ -28,7 +28,7 @@ export default function RTCSetter() {
 
     try {
       setLoading(true);
-      await axios.post("/api/time", payload);
+      await axios.post("/time", payload);
       setAlert({
         type: "success",
         message: "RTC time sent successfully to ESP32!",
