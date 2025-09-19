@@ -95,4 +95,10 @@ export const getFeedLogsRange = (start_date, end_date) =>
 export const postFeedRefill = (amount_kg) =>
   api.post("/feed-logs", { amount_kg });
 
+// ===== RTC Time Setter =====
+export const setRTCtime = async (timeData) => {
+  const res = await api.post("/time", timeData);
+  return res.data;
+};
+
 export default api;

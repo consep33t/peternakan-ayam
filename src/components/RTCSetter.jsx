@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import api from "@/services/api"; // impor api.js kamu
+import { setRTCtime } from "../services/api";
 
 export default function RTCSetter() {
   const [datetime, setDatetime] = useState("");
@@ -28,7 +28,7 @@ export default function RTCSetter() {
 
     try {
       setLoading(true);
-      await api.post("/time", payload); // <-- pakai api, bukan axios langsung
+      await setRTCtime(payload); // <-- pakai service, bukan axios langsung
       setAlert({
         type: "success",
         message: "RTC time sent successfully to ESP32!",
